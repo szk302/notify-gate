@@ -1,0 +1,24 @@
+[tools]
+rust = { version = "1.99.0", components = "clippy,rustfmt" }
+actionlint = "1.7.12"
+shellcheck = "0.11.0"
+
+[tasks.build]
+description = "Build ngate"
+run = "cargo build --locked"
+
+[tasks.test]
+description = "Run all tests (the end-to-end tests need lmm with `lmm config paths`)"
+run = "cargo test --locked"
+
+[tasks.lint]
+description = "Run rustfmt check, clippy and actionlint"
+run = [
+  "cargo fmt --all -- --check",
+  "cargo clippy --locked --all-targets -- -D warnings",
+  "actionlint",
+]
+
+[tasks.fmt]
+description = "Format sources"
+run = "cargo fmt --all"

@@ -1,0 +1,25 @@
+[package]
+name = "notify-gate"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.89"
+license = "MIT"
+description = "Tell recipients about new lmm messages through adapters"
+
+[[bin]]
+name = "ngate"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "=4.6.9", features = ["derive"] }
+libc = "=0.2.191"
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = "=1.0.154"
+serde_yaml_ng = "=0.10.0"
+sha2 = "=0.11.1"
+signal-hook = "=0.4.6"
+thiserror = "=2.0.21"
+time = { version = "=0.3.55", features = ["formatting", "macros"] }
+
+[dev-dependencies]
+tempfile = "=3.27.0"
