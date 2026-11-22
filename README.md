@@ -12,10 +12,39 @@
 
 ## インストール
 
+### ビルド済みのバイナリ
+
+[Releases](https://github.com/szk302/notify-gate/releases) から、環境に合ったファイルをダウンロードして展開し、`ngate` を `PATH` の通った場所に置きます。
+
+| ファイル名の末尾 | 環境 |
+| :--- | :--- |
+| `x86_64-unknown-linux-musl.tar.gz` | Linux（x86_64、静的リンク） |
+| `aarch64-unknown-linux-musl.tar.gz` | Linux（arm64、静的リンク） |
+| `aarch64-apple-darwin.tar.gz` | macOS（Apple Silicon） |
+| `x86_64-apple-darwin.tar.gz` | macOS（Intel） |
+
+```bash
+v=v0.1.0; t=aarch64-unknown-linux-musl
+curl -LO "https://github.com/szk302/notify-gate/releases/download/$v/notify-gate-$v-$t.tar.gz"
+curl -LO "https://github.com/szk302/notify-gate/releases/download/$v/SHA256SUMS"
+grep "notify-gate-$v-$t.tar.gz" SHA256SUMS | sha256sum -c -   # macOS では shasum -a 256 -c -
+tar xzf "notify-gate-$v-$t.tar.gz"
+mkdir -p ~/.local/bin
+install "notify-gate-$v-$t/ngate" ~/.local/bin/
+```
+
+アーカイブには、`LICENSE` と、同梱しているサードパーティーのライセンス表示（`THIRD-PARTY-LICENSES.txt`、Linux 版は `MUSL-COPYRIGHT` も）が入っています。
+
+### ソースから
+
+Rust ツールチェーンは [mise](https://mise.jdx.dev/) で管理しています。
+
 ```bash
 mise install                 # mise.toml の Rust をインストール
 cargo install --locked --path .
 ```
+
+### 必要なもの
 
 lmm（`lmm config paths` のある版）が必要です。tmac のエージェントに知らせる場合は tmac も必要です。
 
