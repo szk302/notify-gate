@@ -30,7 +30,7 @@
 
 ### 1.2. 必要なもの
 
-* lmm（`lmm config paths` のある版。lmm の `2174126` 以降）
+* lmm 0.3.0 以降（`lmm config paths` がある）
 * tmac アダプタを使う場合は tmac
 * 環境変数 `NGATE_LMM`・`NGATE_TMAC` で、使う lmm・tmac の実行ファイルを変えられる（既定は `PATH` の `lmm`・`tmac`）。
 

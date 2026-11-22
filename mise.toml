@@ -1,6 +1,8 @@
 [tools]
 rust = { version = "1.99.0", components = "clippy,rustfmt" }
 actionlint = "1.7.12"
+# lmm for the end-to-end tests (`lmm config paths` is in 0.3.0 and later)
+"github:szk302/local-markdown-mail" = "0.3.0"
 shellcheck = "0.11.0"
 
 [tasks.build]
@@ -8,7 +10,7 @@ description = "Build ngate"
 run = "cargo build --locked"
 
 [tasks.test]
-description = "Run all tests (the end-to-end tests need lmm with `lmm config paths`)"
+description = "Run all tests (the end-to-end tests need lmm 0.3.0 or later)"
 run = "cargo test --locked"
 
 [tasks.lint]
