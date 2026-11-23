@@ -5,7 +5,7 @@
 | 対象バージョン | v0.1.0 |
 | 状態 | 外向き（知らせる）と tmac アダプタを実装した。人向けのリンク（`ngate ensure`）、内向き（外部からの返事）、Slack アダプタは未実装 |
 | 実装言語 | Rust |
-| 関連 | 設計: ai-local-auto の `docs/notify-gate.md`。[lmm](https://github.com/szk302/local-markdown-mail)、[tmac](https://github.com/szk302/tmux-multi-agent-controller) |
+| 関連 | [lmm](https://github.com/szk302/local-markdown-mail)、[tmac](https://github.com/szk302/tmux-multi-agent-controller) |
 
 ---
 
@@ -22,7 +22,7 @@
 | lmm | メッセージを保存する。誰がどこにいるかは知らない |
 | notify-gate | 届いたことを受け取り手に知らせる |
 | tmac | エージェントを操作する（起動、状態、入力、終了） |
-| 呼び出し側（ai-dagu-workflows など） | 道具どうしをつなぐ（tmac の中継に notify-gate を設定する、知らせの文面を渡すなど） |
+| 呼び出し側（エージェントを動かすワークフローなど） | 道具どうしをつなぐ（tmac の中継に notify-gate を設定する、知らせの文面を渡すなど） |
 
 * 依存の向きは、notify-gate → lmm と、tmac アダプタ → tmac だけとする。lmm と tmac は notify-gate を知らない。本体は tmac を知らない（tmac の環境変数を読むのも、tmac アダプタだけである）。
 * notify-gate は、lmm の**利用者の 1 つ**として、lmm のコマンド（`lmm config paths`、`lmm wait`、`lmm show --json`、`lmm box list`）だけを使う。lmm のデータディレクトリを直接読み書きせず、lmm の設定の決め方も写さない。
@@ -197,8 +197,6 @@ destinations:
 
 ## 10. 今後
 
-| 内容 | 設計 |
-| :--- | :--- |
-| 人向けのリンクを、設定の `links` から起動する `ngate ensure` | 設計の §5・§9 |
-| 内向き（外部の返事を `lmm post --reply` にする。許可した相手だけを通す） | 設計の §7.2・§7.3 |
-| Slack アダプタ（外向き、内向き） | 設計の §10 |
+* 人向けのリンクを、設定の `links` から起動する `ngate ensure`
+* 内向き（外部の返事を `lmm post --reply` にする。許可した相手だけを通す）
+* Slack アダプタ（外向き、内向き）
