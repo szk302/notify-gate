@@ -8,10 +8,6 @@ on:
 permissions:
   contents: read
 
-env:
-  # lmm with `lmm config paths` (not released yet): build this commit.
-  LMM_REV: 217412614a50c590b0fa145cf47aa70e5518bced
-
 jobs:
   test:
     strategy:
@@ -27,10 +23,6 @@ jobs:
         with:
           install: true
           cache: true
-      - name: Install lmm (used by the end-to-end tests)
-        run: |
-          cargo install --locked --git https://github.com/szk302/local-markdown-mail --rev "${LMM_REV}" --root "${RUNNER_TEMP}/lmm" lmm
-          echo "${RUNNER_TEMP}/lmm/bin" >> "$GITHUB_PATH"
       - name: Show the tools
         run: |
           lmm --version

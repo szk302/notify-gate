@@ -40,13 +40,13 @@ install "notify-gate-$v-$t/ngate" ~/.local/bin/
 Rust ツールチェーンは [mise](https://mise.jdx.dev/) で管理しています。
 
 ```bash
-mise install                 # mise.toml の Rust をインストール
+mise install                 # mise.toml の Rust と、結合テストに使う lmm をインストール
 cargo install --locked --path .
 ```
 
 ### 必要なもの
 
-lmm（`lmm config paths` のある版）が必要です。tmac のエージェントに知らせる場合は tmac も必要です。
+lmm 0.3.0 以降が必要です。tmac のエージェントに知らせる場合は tmac も必要です。
 
 ## 使い方
 
@@ -116,7 +116,7 @@ ngate link --detach me desktop
 
 ```bash
 mise run build
-mise run test    # 結合テストは lmm（lmm config paths のある版）と Python 3 を使う
+mise run test    # 結合テストは lmm（0.3.0 以降）と Python 3 を使う
 mise run lint
 ```
 
